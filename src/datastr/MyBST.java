@@ -22,5 +22,53 @@ public class MyBST <Ttype>{
 	public int length() {
 		return counter;
 	}
+	
+	public void add(Ttype element) throws Exception{
+		if(element == null) {
+			throw new Exception("Element can not be null");
+		}
+	}
+	
+	public void newNode (Ttype node) throws Exception{
+		if(node == null) {
+			throw new Exception("Element cannot be null");
+		}
+		if(isEmpty()) {
+			MyBSTNode<Ttype> newNode = new MyBSTNode<Ttype>(node);
+			root = newNode;
+			counter ++;
+		} else {
+			if(isFull()) {
+				throw new Exception("BST is full");
+			}
+			
+			addHelper(node, root);
+		}
+	}
+	
+	private void addHelper(Ttype element, MyBSTNode<Ttype> currentNode) {
+		if(((Comparable)element).compareTo(currentNode.getElement()) == 1) {
+			if(currentNode.getRightCh() == null) {
+				MyBSTNode<Ttype> newNode = new MyBSTNode<>(element);
+				currentNode.setRightCh(newNode);
+				newNode.setParent(currentNode);
+				counter++;
+			}
+			else {
+				addHelper(element, currentNode.getRightCh());
+			}
+		} else if(((Comparable)element).compareTo(currentNode.getElement()) == -1) {
+			if(currentNode.getLeftCh() == null) {
+				MyBSTNode<Ttype> newNode = new MyBSTNode<>(element);
+				currentNode.setLeftCh(newNode);
+				newNode.setParent(currentNode);
+				counter++;
+			}else {
+				addHelper(element, currentNode.getLeftCh());
+			}
+		
+		}
+	
+	}
 
 }
