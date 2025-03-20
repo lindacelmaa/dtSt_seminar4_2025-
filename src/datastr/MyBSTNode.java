@@ -37,7 +37,7 @@ public class MyBSTNode <Ttype>{
 		}
 	}
 
-	public void setLeftChl(MyBSTNode<Ttype> inputLeftCh) {
+	public void setLeftCh(MyBSTNode<Ttype> inputLeftCh) {
 		if(inputLeftCh != null) {
 			leftCh = inputLeftCh;
 		}
